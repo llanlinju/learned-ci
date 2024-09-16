@@ -1,4 +1,4 @@
-name: Android CI - Build and Sign APK
+name: Android CI
 
 on:
   workflow_dispatch:
@@ -25,11 +25,11 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       # Decode and write the signing key from secrets
       - name: Decode signing key
