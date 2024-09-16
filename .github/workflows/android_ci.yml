@@ -6,6 +6,7 @@ on:
     branches:
       - main
       - dev-test-branch
+      - env-trigger
 
 jobs:
   build:
