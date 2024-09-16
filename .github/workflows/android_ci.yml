@@ -11,6 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20  # 设置超时时间为20分钟
 
     steps:
       # Checkout the code
