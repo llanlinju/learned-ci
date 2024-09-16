@@ -33,12 +33,12 @@ jobs:
 
       - name: Get version
         id: version
-        run: echo "TAG_NAME=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+        run: echo "version=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
       # Sign the APK (Already handled by Gradle)
       # Upload APK as artifact
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-${{ env.TAG_NAME }}-release
+          name: app-${{ steps.version.outputs.version }}-release
           path: app/build/outputs/apk/release/*.apk
