@@ -28,6 +28,12 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          sdk-version: '34'
+          cache: 'true'
+
       # Decode and write the signing key from secrets
       - name: Decode signing key
         run: |
