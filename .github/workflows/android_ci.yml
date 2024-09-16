@@ -3,10 +3,10 @@ name: Android CI - Build and Sign APK
 on:
   workflow_dispatch:
   push:
-#    branches:
-#      - main
-#      - dev-test-branch
-#      - env-trigger
+    branches:
+      - main
+      - dev-test-branch
+      - env-trigger
 
 jobs:
   build:
@@ -24,6 +24,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'gradle'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       # Decode and write the signing key from secrets
       - name: Decode signing key
