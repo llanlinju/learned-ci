@@ -21,20 +21,16 @@ android {
     }
 
     signingConfigs {
-        create("release") {
-            val keyStorePassword = System.getenv("KEY_STORE_PASSWORD")
-            val password = System.getenv("KEY_PASSWORD")
-            val alias = System.getenv("ALIAS")
-
-            if (keyStorePassword != null) {
+        val keyStorePassword = System.getenv("KEY_STORE_PASSWORD")
+        if (keyStorePassword != null) {
+            create("release") {
                 storeFile = file("../keystore.jks")
                 storePassword = keyStorePassword
-                keyAlias = alias
-                keyPassword = password
+                keyAlias = System.getenv("ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
             }
         }
     }
-
 
     buildTypes {
         release {
