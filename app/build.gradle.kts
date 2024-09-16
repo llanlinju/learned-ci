@@ -20,13 +20,29 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            if (project.hasProperty("KEY_STORE_PASSWORD")) {
+                storeFile = file("keystore.jks")
+                storePassword = project.property("KEY_STORE_PASSWORD").toString()
+                keyAlias = project.property("ALIAS").toString()
+                keyPassword = project.property("KEY_PASSWORD").toString()
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.findByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
