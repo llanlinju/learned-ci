@@ -23,7 +23,7 @@ android {
     signingConfigs {
         create("release") {
             if (project.hasProperty("KEY_STORE_PASSWORD")) {
-                storeFile = file("keystore.jks")
+                storeFile = file("../keystore.jks")
                 storePassword = project.property("KEY_STORE_PASSWORD").toString()
                 keyAlias = project.property("ALIAS").toString()
                 keyPassword = project.property("KEY_PASSWORD").toString()

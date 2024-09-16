@@ -21,10 +21,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      # Set up Android SDK
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+          cache: 'gradle'
 
       # Decode and write the signing key from secrets
       - name: Decode signing key
@@ -40,5 +37,5 @@ jobs:
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: signed-apk
+          name: app-release
           path: app/build/outputs/apk/release/app-release.apk
