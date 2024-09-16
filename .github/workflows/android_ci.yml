@@ -37,5 +37,5 @@ jobs:
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: app/build/outputs/apk/release/app-release.apk
+          name: pre-release
+          path: app/build/outputs/apk/release/*.apk
