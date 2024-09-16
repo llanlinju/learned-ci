@@ -21,11 +21,10 @@ android {
     }
 
     signingConfigs {
-        val keyStorePassword = System.getenv("KEY_STORE_PASSWORD")
-        if (keyStorePassword != null) {
+        kotlin.runCatching { System.getenv("KEY_STORE_PASSWORD") }.getOrNull()?.let {
             create("release") {
                 storeFile = file("../keystore.jks")
-                storePassword = keyStorePassword
+                storePassword = it
                 keyAlias = System.getenv("ALIAS")
                 keyPassword = System.getenv("KEY_PASSWORD")
             }
