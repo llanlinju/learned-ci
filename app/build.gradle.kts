@@ -22,14 +22,19 @@ android {
 
     signingConfigs {
         create("release") {
-            if (project.hasProperty("KEY_STORE_PASSWORD")) {
+            val keyStorePassword = System.getenv("KEY_STORE_PASSWORD")
+            val password = System.getenv("KEY_PASSWORD")
+            val alias = System.getenv("ALIAS")
+
+            if (keyStorePassword != null) {
                 storeFile = file("../keystore.jks")
-                storePassword = project.property("KEY_STORE_PASSWORD").toString()
-                keyAlias = project.property("ALIAS").toString()
-                keyPassword = project.property("KEY_PASSWORD").toString()
+                storePassword = keyStorePassword
+                keyAlias = alias
+                keyPassword = password
             }
         }
     }
+
 
     buildTypes {
         release {

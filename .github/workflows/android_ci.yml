@@ -32,7 +32,11 @@ jobs:
 
       # Build the APK
       - name: Build APK
-        run: ./gradlew assembleRelease -PKEY_STORE_PASSWORD=${{ secrets.KEY_STORE_PASSWORD }} -PKEY_PASSWORD=${{ secrets.KEY_PASSWORD }} -PALIAS=${{ secrets.ALIAS }}
+        env:
+          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          ALIAS: ${{ secrets.ALIAS }}
+        run: ./gradlew assembleRelease
 
       # Sign the APK (Already handled by Gradle)
       # Upload APK as artifact
