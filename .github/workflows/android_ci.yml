@@ -2,11 +2,13 @@ name: Android CI
 
 on:
   workflow_dispatch:
+  pull_request:
   push:
     branches:
-      - main
-      - dev-test-branch
-      - env-trigger
+      - 'main'
+      - 'dev-test-branch'
+      - 'env-trigger'
+
 
 jobs:
   build:
@@ -35,12 +37,11 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v4
 
       # Decode and write the signing key from secrets
       - name: Decode signing key
-        run: |
-          echo "${{ secrets.SIGNING_KEY }}" | base64 --decode > keystore.jks
+        run: echo "${{ secrets.SIGNING_KEY }}" | base64 -di > keystore.jks
 
       # Build the APK
       - name: Build APK
